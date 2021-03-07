@@ -1,10 +1,13 @@
 package com.udacity.jdnd.course3.critter.user;
 
 import com.udacity.jdnd.course3.critter.pet.PetService;
+import com.udacity.jdnd.course3.critter.user.customer.CustomerConversion;
+import com.udacity.jdnd.course3.critter.user.customer.CustomerDTO;
+import com.udacity.jdnd.course3.critter.user.customer.CustomerService;
+import com.udacity.jdnd.course3.critter.user.employee.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.EntityManager;
 import java.time.DayOfWeek;
 import java.util.List;
 import java.util.Set;
@@ -41,7 +44,6 @@ public class UserController {
 
     @PostMapping("/customer")
     public CustomerDTO saveCustomer(@RequestBody CustomerDTO customerDTO){
-        System.out.println(customerDTO);
         return customerConversion.toDTO(customerService.save(customerConversion.toEntity(customerDTO)));
     }
 
@@ -66,7 +68,7 @@ public class UserController {
     }
 
     @GetMapping("/employee/{employeeId}")
-    public EmployeeDTO getEmployee(@PathVariable long employeeId) {
+    public EmployeeDTO getEmployee(@PathVariable long employeeId) throws IllegalArgumentException {
        return  employeeConversion.toDTO(employeeService.findById(employeeId));
 
     }

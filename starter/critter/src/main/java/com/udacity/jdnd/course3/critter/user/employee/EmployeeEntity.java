@@ -1,10 +1,9 @@
-package com.udacity.jdnd.course3.critter.user;
+package com.udacity.jdnd.course3.critter.user.employee;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.DayOfWeek;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity

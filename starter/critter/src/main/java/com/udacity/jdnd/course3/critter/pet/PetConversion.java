@@ -1,8 +1,8 @@
 package com.udacity.jdnd.course3.critter.pet;
 
-import com.udacity.jdnd.course3.critter.user.CustomerEntity;
-import com.udacity.jdnd.course3.critter.user.CustomerRepository;
-import com.udacity.jdnd.course3.critter.user.CustomerService;
+import com.udacity.jdnd.course3.critter.user.customer.CustomerEntity;
+import com.udacity.jdnd.course3.critter.user.customer.CustomerRepository;
+import com.udacity.jdnd.course3.critter.user.customer.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -26,15 +26,11 @@ public class PetConversion {
         pet.setBirthDate(petDTO.getBirthDate());
         pet.setNotes(petDTO.getNotes());
 
-
-
         if (petDTO.getOwnerId() > 0){
             Optional<CustomerEntity> customerEntity = customerRepository.findById(petDTO.getOwnerId());
-            pet.setOwner(customerService.findByID(petDTO.getOwnerId()));
+            pet.setOwner(customerService.findById(petDTO.getOwnerId()));
         }
 
-        System.out.println("++++++++++++++++++++++++++++++++++++");
-        System.out.println(pet);
         return pet;
     }
 

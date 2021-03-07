@@ -2,8 +2,8 @@ package com.udacity.jdnd.course3.critter.schedule;
 
 import com.udacity.jdnd.course3.critter.pet.PetEntity;
 import com.udacity.jdnd.course3.critter.pet.PetService;
-import com.udacity.jdnd.course3.critter.user.EmployeeEntity;
-import com.udacity.jdnd.course3.critter.user.EmployeeService;
+import com.udacity.jdnd.course3.critter.user.employee.EmployeeEntity;
+import com.udacity.jdnd.course3.critter.user.employee.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

@@ -8,6 +8,10 @@ import com.udacity.jdnd.course3.critter.pet.PetType;
 import com.udacity.jdnd.course3.critter.schedule.ScheduleController;
 import com.udacity.jdnd.course3.critter.schedule.ScheduleDTO;
 import com.udacity.jdnd.course3.critter.user.*;
+import com.udacity.jdnd.course3.critter.user.customer.CustomerDTO;
+import com.udacity.jdnd.course3.critter.user.employee.EmployeeDTO;
+import com.udacity.jdnd.course3.critter.user.employee.EmployeeRequestDTO;
+import com.udacity.jdnd.course3.critter.user.employee.EmployeeSkill;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -219,7 +223,6 @@ public class CritterFunctionalTest {
 
         //Employee 1 in is both schedule 1 and 3
         List<ScheduleDTO> scheds1e = scheduleController.getScheduleForEmployee(sched1.getEmployeeIds().get(0));;
-        System.out.println(scheduleController.getAllSchedules());
         compareSchedules(sched1, scheds1e.get(0));
         compareSchedules(sched3, scheds1e.get(1));
 

@@ -1,4 +1,4 @@
-package com.udacity.jdnd.course3.critter.user;
+package com.udacity.jdnd.course3.critter.user.employee;
 
 
 
@@ -26,24 +26,21 @@ public class EmployeeService {
 
     }
 
-    public EmployeeEntity findById(long employeeId) {
+    public EmployeeEntity findById(long employeeId) throws IllegalArgumentException {
         Optional<EmployeeEntity> response = employeeRepository.findById(employeeId);
         if (response.isPresent()) {
             return  response.get();
         }
-
-
-        return null;
+        throw new IllegalArgumentException("employee not find");
     }
 
     public void update(long employeeId, Set<DayOfWeek> daysAvailable) {
 
         employeeRepository.findById(employeeId)
                 .map( value -> {
-                    for (DayOfWeek day : daysAvailable){
+                    for (DayOfWeek day : daysAvailable) {
                         value.addDay(day);
                     }
-                    System.out.println(value);
                     return employeeRepository.save(value);
                 });
 

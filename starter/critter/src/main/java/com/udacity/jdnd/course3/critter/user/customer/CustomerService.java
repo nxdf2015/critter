@@ -1,4 +1,4 @@
-package com.udacity.jdnd.course3.critter.user;
+package com.udacity.jdnd.course3.critter.user.customer;
 
 import com.udacity.jdnd.course3.critter.pet.PetEntity;
 import com.udacity.jdnd.course3.critter.pet.PetService;
@@ -30,7 +30,6 @@ public class CustomerService {
     public List<CustomerEntity> findAll() {
        return  customerRepository.findAll()
                 .stream()
-
                 .collect(toList());
     }
 
@@ -41,11 +40,12 @@ public class CustomerService {
         return   pet.getOwner() ;
     }
 
-    public CustomerEntity findByID(long ownerId) {
+    public CustomerEntity findById(long ownerId) throws IllegalArgumentException{
         Optional<CustomerEntity> customerEntity = customerRepository.findById(ownerId);
         if (customerEntity.isPresent()){
             return customerEntity.get();
         }
-        return  null;
+
+        throw  new IllegalArgumentException("owner not find");
     }
 }
