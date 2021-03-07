@@ -13,8 +13,20 @@ public class EmployeeDTO {
     private Set<EmployeeSkill> skills;
     private Set<DayOfWeek> daysAvailable;
 
+
+
     public long getId() {
         return id;
+    }
+
+    public EmployeeDTO() {
+    }
+
+    public EmployeeDTO(long id, String name, Set<EmployeeSkill> skills, Set<DayOfWeek> daysAvailable) {
+        this.id = id;
+        this.name = name;
+        this.skills = skills;
+        this.daysAvailable = daysAvailable;
     }
 
     public void setId(long id) {
@@ -43,5 +55,15 @@ public class EmployeeDTO {
 
     public void setDaysAvailable(Set<DayOfWeek> daysAvailable) {
         this.daysAvailable = daysAvailable;
+    }
+
+    @Override
+    public String toString() {
+        return "EmployeeDTO{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", skills=" + skills +
+                ", daysAvailable=" + daysAvailable +
+                '}';
     }
 }

@@ -1,8 +1,12 @@
 package com.udacity.jdnd.course3.critter.schedule;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toList;
 
 /**
  * Handles web requests related to Schedules.
@@ -11,28 +15,53 @@ import java.util.List;
 @RequestMapping("/schedule")
 public class ScheduleController {
 
+    @Autowired
+    ScheduleService scheduleService;
+
+    @Autowired
+    ScheduleConversion scheduleConversion;
+
     @PostMapping
     public ScheduleDTO createSchedule(@RequestBody ScheduleDTO scheduleDTO) {
-        throw new UnsupportedOperationException();
+        return scheduleConversion.toDTO(scheduleService.save(scheduleConversion.toEntity(scheduleDTO)));
+
     }
 
     @GetMapping
     public List<ScheduleDTO> getAllSchedules() {
-        throw new UnsupportedOperationException();
+        return scheduleService.findAll()
+                .stream()
+                .map(scheduleConversion::toDTO)
+                .collect(toList());
+
     }
 
     @GetMapping("/pet/{petId}")
     public List<ScheduleDTO> getScheduleForPet(@PathVariable long petId) {
-        throw new UnsupportedOperationException();
+        return scheduleService.findByPetId(petId)
+                .stream()
+                .map(scheduleConversion::toDTO)
+                .collect(toList());
+
     }
 
     @GetMapping("/employee/{employeeId}")
     public List<ScheduleDTO> getScheduleForEmployee(@PathVariable long employeeId) {
-        throw new UnsupportedOperationException();
+        return  scheduleService.findByEmployeeId(employeeId)
+                .stream()
+                .map(scheduleConversion::toDTO)
+                .collect(toList());
+
+
     }
 
     @GetMapping("/customer/{customerId}")
     public List<ScheduleDTO> getScheduleForCustomer(@PathVariable long customerId) {
-        throw new UnsupportedOperationException();
+       return scheduleService.findBCustomeryId(customerId)
+               .stream()
+               .map(scheduleConversion::toDTO)
+               .collect(toList());
+
+
     }
 }
