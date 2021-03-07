@@ -36,7 +36,7 @@ public class CustomerService {
 
 
 
-    public CustomerEntity findByCustomerByPetId(long petId) {
+    public CustomerEntity findCustomerByPetId(long petId) {
         PetEntity pet = petService.findById(petId);
         return   pet.getOwner() ;
     }

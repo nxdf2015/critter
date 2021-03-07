@@ -17,7 +17,8 @@ public class CustomerConversion {
     public  CustomerEntity toEntity(CustomerDTO customerDTO){
         CustomerEntity customerEntity = new CustomerEntity();
         customerEntity.setName(customerDTO.getName());
-        customerEntity.setId(customerDTO.getId());
+        if (customerDTO.getId() > 0)
+            customerEntity.setId(customerDTO.getId());
         customerEntity.setNotes(customerDTO.getNotes());
         customerEntity.setPhoneNumber(customerDTO.getPhoneNumber());
         if (customerDTO.getPetIds() != null) {

@@ -6,6 +6,8 @@ import com.udacity.jdnd.course3.critter.user.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
+
 @Component
 public class PetConversion {
 
@@ -16,15 +18,23 @@ public class PetConversion {
     CustomerRepository customerRepository;
 
     public PetEntity toEntity(PetDTO petDTO){
+
         PetEntity pet = new PetEntity();
         pet.setId(petDTO.getId());
         pet.setName(petDTO.getName());
         pet.setType(petDTO.getType());
         pet.setBirthDate(petDTO.getBirthDate());
         pet.setNotes(petDTO.getNotes());
-        CustomerEntity customerEntity = customerRepository.findById(petDTO.getOwnerId()).get();
-        pet.setOwner(customerService.findByID(petDTO.getOwnerId()));
 
+
+
+        if (petDTO.getOwnerId() > 0){
+            Optional<CustomerEntity> customerEntity = customerRepository.findById(petDTO.getOwnerId());
+            pet.setOwner(customerService.findByID(petDTO.getOwnerId()));
+        }
+
+        System.out.println("++++++++++++++++++++++++++++++++++++");
+        System.out.println(pet);
         return pet;
     }
 
@@ -32,7 +42,9 @@ public class PetConversion {
         PetDTO petDTO = new PetDTO();
         petDTO.setId(pet.getId());
         petDTO.setName(pet.getName());
-        petDTO.setOwnerId(pet.getOwner().getId());
+        if (pet.getOwner() != null) {
+            petDTO.setOwnerId(pet.getOwner().getId());
+        }
         petDTO.setType(pet.getType());
         petDTO.setBirthDate(pet.getBirthDate());
         petDTO.setNotes(pet.getNotes());

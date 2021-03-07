@@ -37,16 +37,11 @@ public class UserController {
     @Autowired
     CustomerConversion customerConversion;
 
-//    @Autowired
-//    CustomerRepository customerRepository;
-////
-//    @GetMapping("/customer/{id}")
-//    public CustomerEntity findbyid(@PathVariable long id){
-//        return customerRepository.findById(id).get();
-//    }
+
 
     @PostMapping("/customer")
     public CustomerDTO saveCustomer(@RequestBody CustomerDTO customerDTO){
+        System.out.println(customerDTO);
         return customerConversion.toDTO(customerService.save(customerConversion.toEntity(customerDTO)));
     }
 
@@ -60,7 +55,7 @@ public class UserController {
 
     @GetMapping("/customer/pet/{petId}")
     public CustomerDTO getOwnerByPet(@PathVariable long petId){
-        return customerConversion.toDTO(customerService.findByCustomerByPetId(petId));
+        return customerConversion.toDTO(customerService.findCustomerByPetId(petId));
 
     }
 

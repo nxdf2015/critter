@@ -70,4 +70,16 @@ public class PetEntity {
     public void setNotes(String notes) {
         this.notes = notes;
     }
+
+    @Override
+    public String toString() {
+        return "PetEntity{" +
+                "id=" + id +
+                ", type=" + type +
+                ", name='" + name + '\'' +
+                ", owner=" + owner +
+                ", birthDate=" + birthDate +
+                ", notes='" + notes + '\'' +
+                '}';
+    }
 }

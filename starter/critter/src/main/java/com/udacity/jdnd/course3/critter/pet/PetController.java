@@ -22,6 +22,7 @@ public class PetController {
 
     @PostMapping
     public PetDTO savePet(@RequestBody PetDTO pet) {
+        System.out.println(pet);
         return petConversion.toDTO(petService.save(petConversion.toEntity(pet)));
     }
 
